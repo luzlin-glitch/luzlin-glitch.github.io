@@ -1,8 +1,123 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Personal Website Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luz Lin | Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
-	This is my personal website!
+    <nav>
+        <p id="menu">☰</p>
+        <p><a href="index.html#home">Home</a></p>
+        <p><a href="bio.html">Biography</a></p>
+        <p><a href="hobby.html">Hobbies</a></p>
+        <p><a href="index.html#education">Education</a></p>
+        <p><a href="index.html#experience">Experience</a></p>
+        <p><a href="index.html#portfolio">Portfolio</a></p>
+        <p><a href="index.html#contact">Contact</a></p>
+        <p><a href="index_zh.html">中文</a></p>
+    </nav>
+
+    <article id="home">
+        <section class="hero">
+            <img src="profile.jpg" alt="Luz Profile" class="profile-photo">
+            <h1>Luz Lin</h1>
+            <h2>Fearless &amp; Data-Driven Explorer</h2>
+            <p class="hero-subtitle">
+                NTHU Student | Materials Operations Intern @adidas | Data Storyteller
+            </p>
+            <p class="hero-buttons">
+                <a href="https://drive.google.com/file/d/1EDx3mjgP9SFTV2IeVlsnFZpvhKWzH7Ub/view?usp=share_link" target="_blank">View Resume</a>
+                <a href="https://www.linkedin.com/in/luzlin/" target="_blank" class="outline">LinkedIn</a>
+            </p>
+        </section>
+    </article>
+
+    <article id="about">
+        <h1>About Me</h1>
+        <section>
+            <p>
+                Hi, I am Luz. I enjoy stepping out of my comfort zone and learning across different fields. My experiences include international project management, social media content creation, campus leadership, photography, video editing, and data analysis.
+            </p>
+            <p>
+                I like turning complex information into clear stories. With experiences in AIESEC, NTHU Racing, campus media, and digital content production, I hope to connect creativity with strategy and create meaningful impact.
+            </p>
+            <p>
+                <a href="bio.html" class="link-button">Read Biography</a>
+                <a href="hobby.html" class="link-button outline">Read Hobby Article</a>
+            </p>
+        </section>
+    </article>
+
+    <article id="education">
+        <h1>Education</h1>
+        <section>
+            <h2>National Tsing Hua University</h2>
+            <p>Bachelor of Foreign Languages and Literature | 2023-2027</p>
+            <p>Related fields: Linguistics, Speech-Language Therapy, Literature, Educational Psychology, Early Childhood Development, Data Analytics, and Bilingual Web Design.</p>
+        </section>
+        <section class="cards">
+            <section><h2>Python</h2><p>Applied Python for data processing, exploratory data analysis, and predictive thinking.</p></section>
+            <section><h2>Power BI</h2><p>Built dashboards and used data modeling to support business performance analysis.</p></section>
+            <section><h2>Bilingual Web Design</h2><p>Designed user-centered webpages with HTML, CSS, responsive design, and basic JavaScript.</p></section>
+        </section>
+    </article>
+
+    <article id="experience">
+        <h1>Experience</h1>
+        <section class="cards">
+            <section><h2>AIESEC in NTHU</h2><p>Vice President of Outgoing Global Volunteer. Collaborated with 30+ international project partners and operated 10+ volunteer projects across 7+ countries.</p></section>
+            <section><h2>InstaNews @nthu_mubao</h2><p>Managed campus social media content for an account with 18K+ followers and produced visual posts, stories, and event promotions.</p></section>
+            <section><h2>Kpop Dancing Club</h2><p>Filmed and edited promotional materials for over 50 teams, supporting the club's visual identity and Instagram content.</p></section>
+            <section><h2>NTHU Racing</h2><p>Worked in public relations, external communication, sponsor-related tasks, and social media content creation.</p></section>
+        </section>
+    </article>
+
+    <article id="portfolio">
+        <h1>Portfolio Album</h1>
+        <section><p>These project cards summarize the fields I have explored. The layout uses the responsive photo album concept from class.</p></section>
+        <section class="album">
+            <figure class="album-item" data-images="AIESEC.png">
+                <div>AIESEC</div>
+                <figcaption>International Project<br><span>Click to view photos</span></figcaption>
+            </figure>
+            <figure class="album-item" data-images="PowerBI_1.png,PowerBI_2.png">
+                <div>Course Project</div>
+                <figcaption>Power BI<br><span>Click to view photos</span></figcaption>
+            </figure>
+            <figure class="album-item" data-images="Python_1.png,Python_2.png">
+                <div>Data</div>
+                <figcaption>Python<br><span>Click to view photos</span></figcaption>
+            </figure>
+            <figure class="album-item" data-images="NTHU Racing_1.png,NTHU Racing_2.png">
+                <div>PR</div>
+                <figcaption>NTHU Racing<br><span>Click to view photos</span></figcaption>
+            </figure>
+            <figure class="album-item" data-images="Photography & Editing_1.jpeg,Photography & Editing_2.jpeg,Photography & Editing_3.jpeg,Photography & Editing_4.jpeg">
+                <div>Video</div>
+                <figcaption>Photography &amp; Editing<br><span>Click to view photos</span></figcaption>
+            </figure>
+            <figure class="album-item" data-images="Sustainability Ambassador_1.png,Sustainability Ambassador_2.png">
+                <div>ESG</div>
+                <figcaption>Sustainability Ambassador<br><span>Click to view photos</span></figcaption>
+            </figure>
+        </section>
+    </article>
+
+    <article id="contact">
+        <h1>Contact</h1>
+        <section>
+            <p>Email: <a href="mailto:nini111333@gmail.com">nini111333@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/luzlin/" target="_blank">View My LinkedIn</a></p>
+            <p>Resume: <a href="https://drive.google.com/file/d/1EDx3mjgP9SFTV2IeVlsnFZpvhKWzH7Ub/view?usp=share_link" target="_blank">View Resume</a></p>
+        </section>
+    </article>
+    <article id="photo-viewer">
+        <p id="close-viewer">Close</p>
+        <section id="viewer-content"></section>
+    </article>
 </body>
 </html>
