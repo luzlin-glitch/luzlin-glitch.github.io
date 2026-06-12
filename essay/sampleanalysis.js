@@ -14,6 +14,18 @@ $(document).ready(function () {
 function showExplanation(exp) {
 	$('#panelText').text(exp);
 	$('body > div.panel').animate({
-		width: "40vw"
+		width: getPanelWidth()
 	}, 350);
 }
+
+
+function getPanelWidth() {
+	if ($(window).width() <= 600) {
+		return "90vw";
+	}
+	if ($(window).width() <= 900) {
+		return "88vw";
+	}
+	return "40vw";
+}
+
