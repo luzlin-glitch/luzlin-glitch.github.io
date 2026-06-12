@@ -582,7 +582,6 @@ body > div.panel {
 
 
 /* ===== Mobile hamburger menu only ===== */
-.menu-toggle,
 .hamburger {
 	display: none;
 }
@@ -613,9 +612,13 @@ body > div.panel {
 		width: 42px;
 		margin-left: auto;
 		padding: 0.35vh 0;
+		border: none;
+		background: transparent;
 		border-radius: 10px;
 		color: #0f172a;
+		font-family: Inter, Arial, sans-serif;
 		font-size: 26px;
+		font-weight: 800;
 		line-height: 1;
 		text-align: center;
 		cursor: pointer;
@@ -633,7 +636,7 @@ body > div.panel {
 		padding-top: 1vh;
 	}
 
-	.menu-toggle:checked ~ .nav-links {
+	nav.open .nav-links {
 		display: block;
 	}
 
@@ -659,6 +662,5 @@ body > div.panel {
 	nav a:visited {
 		font-size: 14px;
 		padding: 1vh 0;
-		flex: none;
 	}
 }

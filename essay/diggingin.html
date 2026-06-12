@@ -12,8 +12,7 @@
 <body>
 
 <nav>
-	<input type="checkbox" id="menu-toggle" class="menu-toggle">
-	<label for="menu-toggle" class="hamburger" aria-label="Toggle navigation">☰</label>
+	<button class="hamburger" type="button" aria-label="Toggle navigation">☰</button>
 	<div class="nav-links">
 		<a href="index.html">Home</a>
 		<a href="diggingin.html">Digging in</a>
@@ -99,5 +98,14 @@
 
 </article>
 
+
+<script>
+	const hamburger = document.querySelector(".hamburger");
+	const nav = document.querySelector("nav");
+
+	hamburger.addEventListener("click", function() {
+		nav.classList.toggle("open");
+	});
+</script>
 </body>
 </html>
