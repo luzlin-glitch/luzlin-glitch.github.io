@@ -1,23 +1,28 @@
-$(window).ready(function() {
-    $("#menu").on("click", function() {
-        $("nav > p:not(:first-of-type)").slideToggle();
-    });
+$(function () {
+    $('.album-item').on('click', function () {
+        const images = String($(this).data('images') || '')
+            .split(',')
+            .map(item => item.trim())
+            .filter(Boolean);
 
-    $(".album-item").on("click", function() {
-        let imageText = $(this).attr("data-images");
-        let imageList = imageText.split(",");
+        $('#viewer-content').empty();
 
-        $("#viewer-content").html("");
-        $("#viewer-content").append('<p class="viewer-note">Click Close to return to the portfolio.</p>');
-
-        imageList.forEach(function(imageName) {
-            $("#viewer-content").append('<img src="' + imageName + '" alt="portfolio photo">');
+        images.forEach(function (src) {
+            $('<img>').attr({ src: src, alt: 'Portfolio photo' }).appendTo('#viewer-content');
         });
 
-        $("#photo-viewer").slideDown();
+        $('#photo-viewer').addClass('is-open');
     });
 
-    $("#close-viewer").on("click", function() {
-        $("#photo-viewer").slideUp();
+    $('#close-viewer, #photo-viewer').on('click', function (event) {
+        if (event.target === this) {
+            $('#photo-viewer').removeClass('is-open');
+        }
+    });
+
+    $(document).on('keydown', function (event) {
+        if (event.key === 'Escape') {
+            $('#photo-viewer').removeClass('is-open');
+        }
     });
 });
