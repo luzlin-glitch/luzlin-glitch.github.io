@@ -17,7 +17,7 @@
   --muted: #b6b0a7;
   --line: rgba(246, 242, 234, 0.14);
   --accent: #b62a2a;
-  --accent-2: #e8d9c6;
+  --accent-2: #14120f;
   --shadow: 0 28px 70px rgba(0,0,0,.35);
   --radius-xl: 30px;
   --radius-lg: 22px;
@@ -153,7 +153,7 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
   white-space: nowrap;
 }
 .brand-strip span { min-width: max-content; font-family: "Space Grotesk"; font-size: clamp(1.2rem, 3vw, 2.2rem); letter-spacing: -.04em; }
-.brand-strip span::after { content: " /"; color: var(--accent); margin-left: 1rem; }
+.brand-strip span::after { content: " |"; color: var(--accent); margin-left: 1rem; }
 .section-heading { max-width: 620px; }
 .section-heading.compact { margin-bottom: 2rem; }
 .section-body { color: var(--muted); font-size: 1.03rem; }
@@ -166,10 +166,25 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
 .timeline-item p, .timeline-item li { color: var(--muted); }
 .timeline-item ul { margin: .8rem 0 0; padding-left: 1.1rem; }
 .project-grid, .skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-.project-card, .skill-card { padding: 1.35rem; min-height: 100%; transition: transform .2s ease, border-color .2s ease; }
+  .project-card, .skill-card { padding: 1.35rem; min-height: 100%; transition: transform .2s ease, border-color .2s ease; }
+  .project-card { display: flex; flex-direction: column; }
 .project-card:hover, .skill-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
 .project-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.1rem; }
 .project-summary, .case-block p, .skill-card p, .contact-section p { color: var(--muted); }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
+.gallery-card { position: relative; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--surface); cursor: pointer; padding: 0; }
+.gallery-card img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .35s ease; }
+.gallery-card:hover img { transform: scale(1.04); }
+.gallery-label { position: absolute; inset: 0; padding: 1rem; display: flex; align-items: flex-end; color: #fff; font-weight: 700; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%); }
+  .project-gallery { display: flex; gap: .6rem; margin-top: auto; }
+  .project-gallery .gallery-card { flex: 1 1 48%; aspect-ratio: 4/3; }
+.lightbox-overlay { position: fixed; inset: 0; display: grid; place-items: center; padding: 1.5rem; background: rgba(11, 11, 12, 0.92); opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 50; }
+.lightbox-overlay.open { opacity: 1; pointer-events: auto; }
+.lightbox-content { position: relative; max-width: min(1100px, 100%); width: 100%; display: grid; gap: 1rem; align-items: center; }
+.lightbox-image { width: 100%; max-height: 80vh; border-radius: var(--radius-lg); object-fit: contain; box-shadow: var(--shadow); }
+.lightbox-caption { margin: 0; color: var(--text); font-size: 0.98rem; text-align: center; }
+.lightbox-close { position: absolute; top: -0.5rem; right: -0.5rem; width: 2.7rem; height: 2.7rem; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--text); font-size: 1.2rem; cursor: pointer; }
+.lightbox-close:hover { transform: scale(1.05); }
 .case-block { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }
 .case-block strong { display: block; color: var(--accent-2); margin-top: .8rem; }
 .skill-section { padding-top: 2rem; }
@@ -189,7 +204,7 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
 @media (max-width: 920px) {
   .section-grid, .two-col { grid-template-columns: 1fr; }
   h1 { max-width: 100%; }
-  .project-grid, .skill-grid { grid-template-columns: 1fr 1fr; }
+  .project-grid, .skill-grid, .gallery-grid { grid-template-columns: 1fr 1fr; }
   .site-nav {
     position: fixed; inset: 66px 1rem auto 1rem; display: none; flex-direction: column; align-items: stretch;
     background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 1rem;
@@ -211,12 +226,13 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
   <div class="cursor-glow" aria-hidden="true"></div>
 
   <header class="site-header">
-    <a href="#home" class="logo" aria-label="Back to home">Luz<span>.</span></a>
+    <a href="#home" class="logo" aria-label="Back to home">Hsin-Yu (Luz) Lin</a>
     <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode">Mode</button>
@@ -228,7 +244,7 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
       <div class="hero-copy reveal">
         <p class="eyebrow">NTHU FLL · adidas Materials Operations · Data Storytelling</p>
         <h1>A data-driven storyteller connecting global projects, brand strategy, and analytics.</h1>
-        <p class="hero-text">I turn complex information into clear, visual, and actionable stories — from supply-chain operations and dashboard thinking to international project management and technical PR.</p>
+        <p class="hero-text">I turn complex information into clear, visual, and actionable stories. | Supply Chain Operations | Dashboard Building | International Project Management | Technical PR |</p>
         <div class="hero-actions">
           <a class="btn primary" href="#projects">View Projects</a>
           <a class="btn secondary" href="https://www.linkedin.com/in/luzlin/" target="_blank" rel="noopener">LinkedIn</a>
@@ -257,11 +273,11 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
     <section id="about" class="section two-col">
       <div class="section-heading reveal">
         <p class="eyebrow">About</p>
-        <h2>Not a single-track profile — a translator between people, data, and systems.</h2>
+        <h2>A translator between people, data, and systems.</h2>
       </div>
       <div class="section-body reveal">
         <p>Hi, I’m Luz Lin, a student at National Tsing Hua University majoring in Foreign Languages and Literature. My background blends language, communication, international project management, content production, and business analytics.</p>
-        <p>Recently, my focus has shifted toward operations and data-driven decision-making. Through my Materials Operations internship at adidas and courses in Python, Power BI, deep learning for business analytics, and bilingual web design, I am building the ability to understand business problems and communicate them through structured, visual, and actionable solutions.</p>
+        <p>Recently, my focus has shifted toward operations and data-driven decision making. Through my Materials Operations internship at adidas and courses in Python, Power BI, deep learning for business analytics, and bilingual web design, I am building the ability to understand business problems and communicate them through structured, visual, and actionable solutions.</p>
         <div class="pill-row">
           <span>Python</span><span>Power BI</span><span>Operations</span><span>PR</span><span>Project Management</span><span>Content Strategy</span>
         </div>
@@ -277,11 +293,19 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
         <article class="timeline-item reveal">
           <span class="time">2026 · Current</span>
           <div>
-            <h3>Materials Operations Intern · adidas</h3>
+            <h3>Product Development & Sourcing | Materials Operations Intern · adidas</h3>
             <p>Learning how product development and materials operations connect with customer order demand, direct business models, distributor structures, and cross-functional workflow. Current interest: turning scattered internal information into a clearer system for tracking, learning, and decision support.</p>
+            <p>Key Relationships: South Asia Material Operations, Materials Availability & Allocation Team | Materials organization team members in different locations</p>
             <ul>
-              <li>Focus areas: materials, customer orders, supply-chain logic, internal documentation, process mapping.</li>
-              <li>Potential value: dashboard, knowledge base, workflow map, order-driven operation analysis.</li>
+              <li>Support data analytics and ad-hoc analysis to summarize T2 Supplier's Performance</li>
+              <li>Collect, analyze, and present data to provide facts for decision-making.</li>
+              <li>Assist in preparing Powerpoint presentations for Business Updates with internal and external stakeholders.</li>
+              <li>Organize and join Taiwan supplier visits/meetings to discuss strategic topics.</li>
+              <li>Enhance current KPI Reporting process/dashboard.</li>
+              <li>Enhance "T2 Monthly Summary" report for distribution to Materials Organization.</li>
+              <li>Organize MO team meetings and facilitate workshops.</li>
+              <li>Contribute to organizing employee engagement activities and office gatherings.</li>
+              <li>Re-Design "LO Taiwan Monthly Newsletter" for the office.</li>
             </ul>
           </div>
         </article>
@@ -324,17 +348,17 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
     <section id="projects" class="section">
       <div class="section-heading compact reveal">
         <p class="eyebrow">Featured Projects</p>
-        <h2>Case studies, not just albums.</h2>
+        <h2>Case Studies</h2>
       </div>
       <div class="project-grid">
         <article class="project-card reveal">
           <div class="project-meta"><span>Operations</span><span>adidas</span></div>
           <h3>Materials Operations Learning System</h3>
           <p class="project-summary">A proposed internal learning and workflow system for understanding order-driven operations, direct vs. distributor models, and materials-related decision points.</p>
-          <div class="case-block">
-            <strong>Problem</strong><p>Intern onboarding documents and process logic are difficult to understand when information is scattered across acronyms, business models, and customer-order workflows.</p>
-            <strong>Action</strong><p>Map the operation flow, define key terms, build a searchable knowledge base, and visualize how customer orders affect materials and internal decisions.</p>
-            <strong>Potential Impact</strong><p>Faster onboarding, clearer communication, and a reusable system for interns or cross-functional teammates.</p>
+          <div class="project-gallery">
+            <button type="button" class="gallery-card" data-full="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80" data-caption="Materials Operations overview">
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=700&q=80" alt="Materials Operations overview" loading="lazy">
+            </button>
           </div>
         </article>
         <article class="project-card reveal">
@@ -345,6 +369,14 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
             <strong>Role</strong><p>Data modeling, dashboard design, and insight communication.</p>
             <strong>Value</strong><p>Transform raw numbers into visual patterns that help users identify trends, compare performance, and ask better business questions.</p>
           </div>
+          <div class="project-gallery">
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/PowerBI_1.png" data-caption="Power BI — example 1">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/PowerBI_1.png" alt="Power BI example 1" loading="lazy">
+            </button>
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/PowerBI_2.png" data-caption="Power BI — example 2">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/PowerBI_2.png" alt="Power BI example 2" loading="lazy">
+            </button>
+          </div>
         </article>
         <article class="project-card reveal">
           <div class="project-meta"><span>Global Project</span><span>AIESEC</span></div>
@@ -353,6 +385,11 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
           <div class="case-block">
             <strong>Scale</strong><p>30+ international partners, 10+ projects, 7+ countries.</p>
             <strong>Role</strong><p>Led coordination, matching, promotion, and operational communication.</p>
+          </div>
+          <div class="project-gallery">
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/AIESEC.png" data-caption="International volunteer collaboration">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/AIESEC.png" alt="International volunteer collaboration" loading="lazy">
+            </button>
           </div>
         </article>
         <article class="project-card reveal">
@@ -363,19 +400,54 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
             <strong>Challenge</strong><p>Make technical work understandable and attractive to external audiences.</p>
             <strong>Action</strong><p>Translate team progress into sponsor-facing language, event materials, and social content.</p>
           </div>
+          <div class="project-gallery">
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/NTHU%20Racing_1.png" data-caption="NTHU Racing — photo 1">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/NTHU%20Racing_1.png" alt="NTHU Racing photo 1" loading="lazy">
+            </button>
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/NTHU%20Racing_2.png" data-caption="NTHU Racing — photo 2">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/NTHU%20Racing_2.png" alt="NTHU Racing photo 2" loading="lazy">
+            </button>
+          </div>
         </article>
         <article class="project-card reveal">
-          <div class="project-meta"><span>Content</span><span>Campus Media</span></div>
-          <h3>Campus Media Storytelling</h3>
-          <p class="project-summary">Visual and social content management for a campus account with an audience of more than 18,000 followers.</p>
+          <div class="project-meta"><span>Python</span><span>Business Analytics</span></div>
+          <h3>Data Storytelling | Python</h3>
+          <p class="project-summary">Created data-driven narratives using Python to visualize and communicate complex information effectively.</p>
           <div class="case-block">
-            <strong>Role</strong><p>Visual posts, story design, event promotion, and information packaging.</p>
+            <strong>Role</strong><p>Data analysis, visualization, deep learning in business analytics.</p>
+            <strong>Value</strong><p>Turned raw data into clear, visual, and actionable stories to support business understanding and decision-making.</p>
+          </div>
+          <div class="project-gallery">
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Python_1.png" data-caption="Python — example 1">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Python_1.png" alt="Python example 1" loading="lazy">
+            </button>
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Python_2.png" data-caption="Python — example 2">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Python_2.png" alt="Python example 2" loading="lazy">
+            </button>
           </div>
         </article>
         <article class="project-card reveal">
           <div class="project-meta"><span>Creative</span><span>Photography</span></div>
           <h3>Performance Photography & Editing</h3>
           <p class="project-summary">Produced visual assets for more than 50 dance performance teams, combining event documentation with social media storytelling.</p>
+          <div class="case-block">
+            <strong>Scope</strong><p>Photography and editing for 50+ performance teams.</p>
+            <strong>Value</strong><p>Support the club’s visual identity and social media presence through compelling performance photography.</p>
+          </div>
+          <div class="project-gallery">
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Photography%20%26%20Editing_1.jpeg" data-caption="Performance photography 1">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Photography%20%26%20Editing_1.jpeg" alt="Performance photography 1" loading="lazy">
+            </button>
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Photography%20%26%20Editing_2.jpeg" data-caption="Performance photography 2">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Photography%20%26%20Editing_2.jpeg" alt="Performance photography 2" loading="lazy">
+            </button>
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Photography%20%26%20Editing_3.jpeg" data-caption="Performance photography 3">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Photography%20%26%20Editing_3.jpeg" alt="Performance photography 3" loading="lazy">
+            </button>
+            <button type="button" class="gallery-card" data-full="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Photography%20%26%20Editing_4.jpeg" data-caption="Performance photography 4">
+              <img src="https://raw.githubusercontent.com/luzlin-glitch/luzlin-glitch.github.io/main/Photography%20%26%20Editing_4.jpeg" alt="Performance photography 4" loading="lazy">
+            </button>
+          </div>
         </article>
       </div>
     </section>
@@ -395,7 +467,7 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
 
     <section id="contact" class="section contact-section reveal">
       <p class="eyebrow">Contact</p>
-      <h2>Let’s connect ideas, data, and stories.</h2>
+      <h2>Let’s connect data and stories :) </h2>
       <p>Open to internship opportunities, data-driven projects, brand communication, and cross-functional collaboration.</p>
       <div class="contact-actions">
         <a class="btn primary" href="mailto:nini111333@gmail.com">nini111333@gmail.com</a>
@@ -403,6 +475,14 @@ h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
       </div>
     </section>
   </main>
+
+  <div class="lightbox-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" type="button" aria-label="Close photo view">×</button>
+      <img class="lightbox-image" src="" alt="" loading="lazy">
+      <p class="lightbox-caption"></p>
+    </div>
+  </div>
 
   <button class="back-to-top" aria-label="Back to top">↑</button>
   <script>
@@ -444,6 +524,41 @@ window.addEventListener('scroll', () => {
   else backToTop.classList.remove('visible');
 });
 backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const galleryItems = document.querySelectorAll('.gallery-card');
+const lightbox = document.querySelector('.lightbox-overlay');
+const lightboxImage = document.querySelector('.lightbox-image');
+const lightboxCaption = document.querySelector('.lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+const closeLightbox = () => {
+  if (!lightbox) return;
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  lightboxImage.src = '';
+};
+
+galleryItems.forEach(item => {
+  item.addEventListener('click', () => {
+    if (!lightbox || !lightboxImage || !lightboxCaption) return;
+    const src = item.dataset.full || item.querySelector('img')?.src;
+    const alt = item.querySelector('img')?.alt ?? '';
+    const caption = item.dataset.caption || alt;
+    lightboxImage.src = src;
+    lightboxImage.alt = alt;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+  });
+});
+
+lightboxClose?.addEventListener('click', closeLightbox);
+lightbox?.addEventListener('click', event => {
+  if (event.target === lightbox) closeLightbox();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
+});
 
 window.addEventListener('pointermove', (event) => {
   if (!glow) return;
