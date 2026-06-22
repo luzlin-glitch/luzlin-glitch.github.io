@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Luz Lin — data-driven storyteller connecting global projects, operations, brand strategy, and analytics." />
+  <title>Luz Lin | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0b0b0c;
+  --surface: #151517;
+  --surface-2: #1f2024;
+  --text: #f6f2ea;
+  --muted: #b6b0a7;
+  --line: rgba(246, 242, 234, 0.14);
+  --accent: #b62a2a;
+  --accent-2: #e8d9c6;
+  --shadow: 0 28px 70px rgba(0,0,0,.35);
+  --radius-xl: 30px;
+  --radius-lg: 22px;
+  --radius-md: 14px;
+}
+
+html[data-theme="light"] {
+  --bg: #f5f1ea;
+  --surface: #ffffff;
+  --surface-2: #ebe3d7;
+  --text: #111111;
+  --muted: #5e5a55;
+  --line: rgba(17,17,17,.12);
+  --accent: #b62a2a;
+  --accent-2: #111111;
+  --shadow: 0 28px 70px rgba(31, 28, 24, .14);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(182,42,42,.22), transparent 28rem),
+    radial-gradient(circle at 88% 8%, rgba(232,217,198,.10), transparent 26rem),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.cursor-glow {
+  position: fixed;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 999px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(182,42,42,.16), transparent 65%);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem clamp(1rem, 4vw, 4rem);
+  backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+.logo {
+  font-family: Inter, "Noto Sans TC", system-ui, sans-serif;
+  font-size: 1.28rem;
+  font-weight: 750;
+  letter-spacing: -.02em;
+}
+.logo span { color: var(--accent); }
+.site-nav { display: flex; align-items: center; gap: 1.35rem; font-size: .93rem; color: var(--muted); }
+.site-nav a:hover { color: var(--text); }
+.nav-toggle { display: none; }
+.theme-toggle, .nav-toggle {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: .55rem .85rem;
+  cursor: pointer;
+}
+
+main { position: relative; z-index: 1; }
+.section, .hero { padding: clamp(4.5rem, 9vw, 8rem) clamp(1.2rem, 6vw, 6rem); }
+.section-grid, .two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.hero { min-height: calc(100vh - 76px); }
+.eyebrow {
+  margin: 0 0 .85rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: .76rem;
+  font-weight: 800;
+}
+h1, h2, h3 { font-family: Inter, "Noto Sans TC", system-ui, sans-serif; line-height: 1.08; margin: 0; }
+h1 { font-size: clamp(2.8rem, 7.1vw, 6.2rem); max-width: 13ch; font-weight: 760; letter-spacing: -.045em; }
+h2 { font-size: clamp(2rem, 4.1vw, 3.55rem); font-weight: 740; letter-spacing: -.035em; }
+h3 { font-size: 1.28rem; font-weight: 720; letter-spacing: -.015em; }
+.hero-text { max-width: 660px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); margin: 1.5rem 0 2rem; }
+.hero-actions, .contact-actions { display: flex; flex-wrap: wrap; gap: .9rem; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: .9rem 1.25rem;
+  border: 1px solid var(--line);
+  font-weight: 800;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn.secondary { background: var(--surface); color: var(--text); }
+.hero-card, .project-card, .skill-card, .contact-section {
+  background: linear-gradient(145deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface-2) 92%, transparent));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+}
+.hero-card { padding: clamp(1.4rem, 3vw, 2rem); }
+.card-topline { color: var(--muted); font-size: .9rem; margin-bottom: 1rem; }
+.hero-card p { color: var(--muted); }
+.stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .8rem; margin-top: 1.4rem; }
+.stat-grid div { padding: 1rem; background: color-mix(in srgb, var(--bg) 40%, transparent); border: 1px solid var(--line); border-radius: var(--radius-md); }
+.stat-grid strong { display: block; font-size: 1.65rem; font-family: "Space Grotesk"; color: var(--accent-2); }
+.stat-grid span { display: block; color: var(--muted); font-size: .86rem; }
+.brand-strip {
+  display: flex;
+  overflow: hidden;
+  gap: 1rem;
+  padding: 1rem clamp(1.2rem, 6vw, 6rem);
+  border-block: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.brand-strip span { min-width: max-content; font-family: "Space Grotesk"; font-size: clamp(1.2rem, 3vw, 2.2rem); letter-spacing: -.04em; }
+.brand-strip span::after { content: " /"; color: var(--accent); margin-left: 1rem; }
+.section-heading { max-width: 620px; }
+.section-heading.compact { margin-bottom: 2rem; }
+.section-body { color: var(--muted); font-size: 1.03rem; }
+.pill-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem; }
+.pill-row span, .project-meta span { border: 1px solid var(--line); border-radius: 999px; padding: .38rem .75rem; color: var(--muted); font-size: .82rem; }
+.timeline { max-width: 1080px; margin: 2rem auto 0; border-left: 1px solid var(--line); }
+.timeline-item { display: grid; grid-template-columns: 170px 1fr; gap: 1.5rem; padding: 0 0 2.4rem 1.5rem; position: relative; }
+.timeline-item::before { content: ""; position: absolute; left: -7px; top: .3rem; width: 13px; height: 13px; border-radius: 50%; background: var(--accent); }
+.time { color: var(--muted); font-weight: 800; font-size: .9rem; }
+.timeline-item p, .timeline-item li { color: var(--muted); }
+.timeline-item ul { margin: .8rem 0 0; padding-left: 1.1rem; }
+.project-grid, .skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.project-card, .skill-card { padding: 1.35rem; min-height: 100%; transition: transform .2s ease, border-color .2s ease; }
+.project-card:hover, .skill-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
+.project-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.1rem; }
+.project-summary, .case-block p, .skill-card p, .contact-section p { color: var(--muted); }
+.case-block { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.case-block strong { display: block; color: var(--accent-2); margin-top: .8rem; }
+.skill-section { padding-top: 2rem; }
+.contact-section { margin: clamp(1.2rem, 6vw, 6rem); padding: clamp(2rem, 5vw, 4rem); text-align: center; }
+.contact-section h2 { max-width: 760px; margin: 0 auto; }
+.contact-section p { max-width: 620px; margin: 1rem auto 1.6rem; }
+.contact-actions { justify-content: center; }
+.back-to-top {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 15;
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--surface); color: var(--text); cursor: pointer; opacity: 0; transform: translateY(12px); transition: .2s ease;
+}
+.back-to-top.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 920px) {
+  .section-grid, .two-col { grid-template-columns: 1fr; }
+  h1 { max-width: 100%; }
+  .project-grid, .skill-grid { grid-template-columns: 1fr 1fr; }
+  .site-nav {
+    position: fixed; inset: 66px 1rem auto 1rem; display: none; flex-direction: column; align-items: stretch;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 1rem;
+  }
+  .site-nav.open { display: flex; }
+  .nav-toggle { display: inline-flex; }
+}
+@media (max-width: 640px) {
+  .section, .hero { padding-inline: 1rem; }
+  .hero { min-height: auto; }
+  .project-grid, .skill-grid, .timeline-item, .stat-grid { grid-template-columns: 1fr; }
+  .timeline-item { gap: .4rem; }
+  h1 { font-size: clamp(2.7rem, 15vw, 4.5rem); }
+}
+
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a href="#home" class="logo" aria-label="Back to home">Luz<span>.</span></a>
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">Mode</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero section-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">NTHU FLL · adidas Materials Operations · Data Storytelling</p>
+        <h1>A data-driven storyteller connecting global projects, brand strategy, and analytics.</h1>
+        <p class="hero-text">I turn complex information into clear, visual, and actionable stories — from supply-chain operations and dashboard thinking to international project management and technical PR.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/luzlin/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <aside class="hero-card reveal" aria-label="Profile highlights">
+        <div class="card-topline">Current Focus</div>
+        <h2>Operations × Analytics × Communication</h2>
+        <p>Building a cross-functional profile from foreign languages and global leadership toward data analytics, supply-chain thinking, and business systems.</p>
+        <div class="stat-grid">
+          <div><strong>30+</strong><span>global partners</span></div>
+          <div><strong>10+</strong><span>volunteer projects</span></div>
+          <div><strong>18K+</strong><span>media audience</span></div>
+          <div><strong>50+</strong><span>teams filmed</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="brand-strip" aria-label="Core positioning">
+      <span>Data Analytics</span>
+      <span>Global Operations</span>
+      <span>Brand Storytelling</span>
+      <span>Visual Communication</span>
+    </section>
+
+    <section id="about" class="section two-col">
+      <div class="section-heading reveal">
+        <p class="eyebrow">About</p>
+        <h2>Not a single-track profile — a translator between people, data, and systems.</h2>
+      </div>
+      <div class="section-body reveal">
+        <p>Hi, I’m Luz Lin, a student at National Tsing Hua University majoring in Foreign Languages and Literature. My background blends language, communication, international project management, content production, and business analytics.</p>
+        <p>Recently, my focus has shifted toward operations and data-driven decision-making. Through my Materials Operations internship at adidas and courses in Python, Power BI, deep learning for business analytics, and bilingual web design, I am building the ability to understand business problems and communicate them through structured, visual, and actionable solutions.</p>
+        <div class="pill-row">
+          <span>Python</span><span>Power BI</span><span>Operations</span><span>PR</span><span>Project Management</span><span>Content Strategy</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="section-heading compact reveal">
+        <p class="eyebrow">Selected Experience</p>
+        <h2>Where my cross-functional profile was built.</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <span class="time">2026 · Current</span>
+          <div>
+            <h3>Materials Operations Intern · adidas</h3>
+            <p>Learning how product development and materials operations connect with customer order demand, direct business models, distributor structures, and cross-functional workflow. Current interest: turning scattered internal information into a clearer system for tracking, learning, and decision support.</p>
+            <ul>
+              <li>Focus areas: materials, customer orders, supply-chain logic, internal documentation, process mapping.</li>
+              <li>Potential value: dashboard, knowledge base, workflow map, order-driven operation analysis.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <span class="time">2025–2026</span>
+          <div>
+            <h3>Vice President · AIESEC in NTHU, Outgoing Global Volunteer</h3>
+            <p>Led overseas volunteer project operations and collaborated with international partners across countries.</p>
+            <ul>
+              <li>Worked with 30+ international project partners.</li>
+              <li>Operated 10+ volunteer projects across 7+ countries.</li>
+              <li>Managed digital promotion, project matching, and student customer journey.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <span class="time">2025–Current</span>
+          <div>
+            <h3>Social Editor · InstaNews @nthu_mubao</h3>
+            <p>Managed visual posts, stories, and event promotion for a campus media account with more than 18,000 followers.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <span class="time">2026 · Current</span>
+          <div>
+            <h3>Public Relations · NTHU Racing</h3>
+            <p>Handled external communication, sponsor-related messaging, and technical storytelling for a Formula Student team.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <span class="time">2024–2025</span>
+          <div>
+            <h3>Photography & Digital Content · NTHU K-pop Dancing Club</h3>
+            <p>Produced photography and short-form video assets for more than 50 performance teams, supporting the club’s visual identity and social media presence.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-heading compact reveal">
+        <p class="eyebrow">Featured Projects</p>
+        <h2>Case studies, not just albums.</h2>
+      </div>
+      <div class="project-grid">
+        <article class="project-card reveal">
+          <div class="project-meta"><span>Operations</span><span>adidas</span></div>
+          <h3>Materials Operations Learning System</h3>
+          <p class="project-summary">A proposed internal learning and workflow system for understanding order-driven operations, direct vs. distributor models, and materials-related decision points.</p>
+          <div class="case-block">
+            <strong>Problem</strong><p>Intern onboarding documents and process logic are difficult to understand when information is scattered across acronyms, business models, and customer-order workflows.</p>
+            <strong>Action</strong><p>Map the operation flow, define key terms, build a searchable knowledge base, and visualize how customer orders affect materials and internal decisions.</p>
+            <strong>Potential Impact</strong><p>Faster onboarding, clearer communication, and a reusable system for interns or cross-functional teammates.</p>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-meta"><span>Data</span><span>Power BI</span></div>
+          <h3>Business Dashboard Thinking</h3>
+          <p class="project-summary">Interactive dashboard practice using data modeling and visual analytics to support business performance interpretation.</p>
+          <div class="case-block">
+            <strong>Role</strong><p>Data modeling, dashboard design, and insight communication.</p>
+            <strong>Value</strong><p>Transform raw numbers into visual patterns that help users identify trends, compare performance, and ask better business questions.</p>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-meta"><span>Global Project</span><span>AIESEC</span></div>
+          <h3>International Volunteer Project Operations</h3>
+          <p class="project-summary">Managed overseas volunteer project operations with partner communication, student journey design, and digital promotion.</p>
+          <div class="case-block">
+            <strong>Scale</strong><p>30+ international partners, 10+ projects, 7+ countries.</p>
+            <strong>Role</strong><p>Led coordination, matching, promotion, and operational communication.</p>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-meta"><span>Technical PR</span><span>NTHU Racing</span></div>
+          <h3>Racing Team External Communication</h3>
+          <p class="project-summary">Public relations and storytelling for a student racing team connecting engineering, sponsorship, and brand communication.</p>
+          <div class="case-block">
+            <strong>Challenge</strong><p>Make technical work understandable and attractive to external audiences.</p>
+            <strong>Action</strong><p>Translate team progress into sponsor-facing language, event materials, and social content.</p>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-meta"><span>Content</span><span>Campus Media</span></div>
+          <h3>Campus Media Storytelling</h3>
+          <p class="project-summary">Visual and social content management for a campus account with an audience of more than 18,000 followers.</p>
+          <div class="case-block">
+            <strong>Role</strong><p>Visual posts, story design, event promotion, and information packaging.</p>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-meta"><span>Creative</span><span>Photography</span></div>
+          <h3>Performance Photography & Editing</h3>
+          <p class="project-summary">Produced visual assets for more than 50 dance performance teams, combining event documentation with social media storytelling.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="section skill-section">
+      <div class="section-heading compact reveal">
+        <p class="eyebrow">Skills</p>
+        <h2>My toolkit is built around analysis, communication, and execution.</h2>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card reveal"><h3>Data & Systems</h3><p>Python, Power BI, data cleaning, dashboard thinking, business analytics, process mapping.</p></div>
+        <div class="skill-card reveal"><h3>Communication</h3><p>English writing, bilingual content, technical storytelling, stakeholder communication, PR messaging.</p></div>
+        <div class="skill-card reveal"><h3>Project Management</h3><p>International coordination, team leadership, customer journey thinking, event and project operations.</p></div>
+        <div class="skill-card reveal"><h3>Creative Production</h3><p>Photography, short-form video, Instagram content, visual layout, portfolio web design.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Let’s connect ideas, data, and stories.</h2>
+      <p>Open to internship opportunities, data-driven projects, brand communication, and cross-functional collaboration.</p>
+      <div class="contact-actions">
+        <a class="btn primary" href="mailto:nini111333@gmail.com">nini111333@gmail.com</a>
+        <a class="btn secondary" href="https://www.linkedin.com/in/luzlin/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+  <script>
+const navToggle = document.querySelector('.nav-toggle');
+const siteNav = document.querySelector('.site-nav');
+const themeToggle = document.querySelector('.theme-toggle');
+const backToTop = document.querySelector('.back-to-top');
+const glow = document.querySelector('.cursor-glow');
+
+navToggle?.addEventListener('click', () => {
+  const isOpen = siteNav.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+});
+
+document.querySelectorAll('.site-nav a').forEach(link => {
+  link.addEventListener('click', () => siteNav.classList.remove('open'));
+});
+
+themeToggle?.addEventListener('click', () => {
+  const root = document.documentElement;
+  const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  root.dataset.theme = next;
+  localStorage.setItem('theme', next);
+});
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 600) backToTop.classList.add('visible');
+  else backToTop.classList.remove('visible');
+});
+backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+window.addEventListener('pointermove', (event) => {
+  if (!glow) return;
+  glow.style.left = event.clientX + 'px';
+  glow.style.top = event.clientY + 'px';
+});
+
+  </script>
+</body>
+</html>
